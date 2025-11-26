@@ -1,0 +1,29 @@
+/* ─────────────────────────────────────
+   Global Reset & Browser Normalization
+   ───────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Root-level system color mode hint */
+:root {
+  color-scheme: light dark;
+}
+
+/* Base HTML behavior */
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+/* Body baseline without layout overrides */
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+}
