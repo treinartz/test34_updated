@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://treinartz.github.io/test33",
+  "homepage": "https://treinartz.github.io/test34_updated",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
