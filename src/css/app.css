@@ -1,124 +1,154 @@
 /* ─────────────────────────────────────
-   Design System Variables (Colors, Fonts, Spacing)
+   DESIGN TOKEN VARIABLES
+   These variables form the "design system"
+   for your entire site. Changing a value
+   here updates the entire UI instantly.
    ───────────────────────────────────── */
 :root {
-  /* Colors */
-  --color-primary: #6366f1;
-  --color-primary-dark: #4f46e5;
-  --color-bg: #0f0f0f;
-  --color-bg-light: #1a1a1a;
-  --color-bg-lighter: #262626;
-  --color-text: #f5f5f5;
-  --color-text-muted: #a3a3a3;
-  --color-border: #333333;
+  /* Core brand + UI colors.
+     Using variables allows themes, consistency,
+     and instant global updates. */
+  --color-primary: #6366f1;       /* Accent color used for links, highlights */
+  --color-primary-dark: #4f46e5;  /* Darker hover/shadow variant */
+  --color-bg: #0f0f0f;            /* Page background (dark theme) */
+  --color-bg-light: #1a1a1a;      /* Subtle containers, cards */
+  --color-bg-lighter: #262626;    /* Hover states, soft contrast */
+  --color-text: #f5f5f5;          /* Main readable text */
+  --color-text-muted: #a3a3a3;    /* Secondary text */
+  --color-border: #333333;        /* Dividers / containers */
 
-  /* Fonts */
-  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-mono: 'Fira Code', 'Consolas', monospace;
+  /* Font families for consistent typography.
+     Sans for general UI, mono for code examples. */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Fira Code", "Consolas", monospace;
 
-  /* Spacing scale */
+  /* Standard spacing scale.
+     Using a scale ensures consistent rhythm. */
   --spacing-xs: 0.25rem;
   --spacing-sm: 0.5rem;
   --spacing-md: 1rem;
   --spacing-lg: 2rem;
   --spacing-xl: 4rem;
 
-  /* Border radius */
+  /* Corner radius scale for consistent rounding. */
   --radius-sm: 4px;
   --radius-md: 8px;
   --radius-lg: 12px;
 
-  /* Transitions */
+  /* Motion timings for UI polish.
+     Great for hovers and small transitions. */
   --transition-fast: 150ms ease;
   --transition-normal: 250ms ease;
 }
 
 /* ─────────────────────────────────────
-   Base Typography & Global Styling
+   GLOBAL BASE STYLES
+   These set the tone of the entire site:
+   typography, layout, default look/feel.
    ───────────────────────────────────── */
 body {
-  font-family: var(--font-sans);
   background-color: var(--color-bg);
   color: var(--color-text);
-  line-height: 1.6;
+  font-family: var(--font-sans); /* Always use design-system fonts */
+  line-height: 1.6;              /* Improves readability */
 }
 
-/* Headings */
+/* Headings use the same vertical rhythm and weight.
+   This creates visual hierarchy. */
 h1, h2, h3, h4 {
-  line-height: 1.2;
   font-weight: 600;
+  line-height: 1.2;
 }
+
+/* Explicit font sizes maintain consistency between pages. */
 h1 { font-size: 2.5rem; }
 h2 { font-size: 1.75rem; }
 h3 { font-size: 1.25rem; }
 
-/* Text */
+/* All paragraphs use spacing scale for consistency. */
 p {
   margin-bottom: var(--spacing-md);
 }
 
-/* Links */
+/* ─────────────────────────────────────
+   LINK STYLING
+   Links use the primary color to distinguish
+   interactive text across the site.
+   ───────────────────────────────────── */
 a {
   color: var(--color-primary);
   text-decoration: none;
   transition: color var(--transition-fast);
 }
+
 a:hover {
   color: var(--color-primary-dark);
 }
 
-/* Images */
+/* Ensures images never overflow their container. */
 img {
-  max-width: 100%;
-  height: auto;
   display: block;
+  height: auto;
+  max-width: 100%;
 }
 
 /* ─────────────────────────────────────
-   Buttons (replaces Vite default buttons)
+   BUTTON SYSTEM
+   Replaces default Vite buttons with a consistent,
+   customizable “button design token” approach.
    ───────────────────────────────────── */
 button {
-  border-radius: var(--radius-md);
+  background-color: var(--color-bg-light);
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  font-family: var(--font-sans);
   font-size: 1em;
   font-weight: 500;
-  font-family: var(--font-sans);
-  background-color: var(--color-bg-light);
-  cursor: pointer;
+  padding: 0.6em 1.2em;
   transition: border-color var(--transition-fast);
 }
 
+/* UI feedback (hover state). */
 button:hover {
   border-color: var(--color-primary);
 }
 
+/* Accessibility: visible focus for keyboard users. */
 button:focus,
 button:focus-visible {
   outline: 3px solid var(--color-primary);
 }
 
 /* ─────────────────────────────────────
-   Layout Containers
+   APP LAYOUT CONTAINERS
+   Defines how content is centered, sized,
+   and arranged on large screens.
    ───────────────────────────────────── */
 .app {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  min-height: 100vh; /* Footer always sits at bottom */
 }
 
 .main-content {
-  flex: 1;
+  flex: 1;                    /* Allows flexible vertical growth */
+  margin: 0 auto;             /* Centers content */
+  max-width: 1200px;          /* Typical “readable” width */
+  padding: var(--spacing-lg); /* Design-system spacing */
   width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: var(--spacing-lg);
 }
 
 /* ─────────────────────────────────────
-   Responsive Adjustments
+   RESPONSIVE ADJUSTMENTS
+   These rules make the site mobile-friendly.
    ───────────────────────────────────── */
 @media (max-width: 768px) {
-  html { font-size: 14px; }
-  .main-content { padding: var(--spacing-md); }
+  html {
+    font-size: 14px; /* Scales down everything proportionally */
+  }
+
+  .main-content {
+    padding: var(--spacing-md); /* Smaller screen = tighter layout */
+  }
 }

@@ -63,7 +63,7 @@ function draw() {
       "mouseX and mouseY track cursor position",
       "Using variables makes code flexible and reusable"
     ],
-    challenges: "Debugging when I forgot to declare a variable with let.",
+    challenges: "Debugging when I forgot to declare a variable with let. Also this is not easy!",
     codeSnippet: `let circleSize = 50;
 
 function setup() {
