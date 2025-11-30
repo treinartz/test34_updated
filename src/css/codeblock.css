@@ -1,51 +1,118 @@
 /* ───────────────────────────
    CodeBlock Container
+   This wraps the entire code snippet and its copy button.
+   It establishes a styled "box" that visually separates the code
+   from surrounding content.
    ─────────────────────────── */
 .codeblock {
-  position: relative;
+  position: relative; 
+  /* Allows absolutely positioned children (like the copy button)
+     to position themselves relative to THIS box instead of the page. */
+
   background-color: var(--color-bg);
+  /* Sets the background to your theme’s base background so code blocks
+     match your light/dark mode design system. */
+
   border: 1px solid var(--color-border);
+  /* Gives a subtle container boundary to separate the block from text. */
+
   border-radius: var(--radius-md);
+  /* Smoothly rounds the corners, consistent with your design tokens. */
+
   overflow: hidden;
+  /* Ensures the rounded corners clip children like the pre/code area.
+     Without this, preformatted text might extend beyond the curve. */
 }
 
 /* ───────────────────────────
    Copy Button
+   A button placed in the top-right corner of the code block that lets
+   users click once to copy the entire code snippet.
    ─────────────────────────── */
 .copy-button {
   position: absolute;
+  /* Detaches the button from document flow so it can sit above the code. */
+
   top: var(--spacing-sm);
   right: var(--spacing-sm);
+  /* Anchors the button into the upper-right corner of the codeblock,
+     using theme spacing variables for consistent layout rhythm. */
+
   padding: var(--spacing-xs) var(--spacing-sm);
+  /* Compact padding for a subtle, utility-style button. */
+
   background-color: var(--color-bg-lighter);
+  /* Slightly lighter than the container background so the button stands out
+     without drawing too much attention. */
+
   border: 1px solid var(--color-border);
+  /* Gives the button a defined edge and matches your global border style. */
+
   border-radius: var(--radius-sm);
+  /* Softens the button corners to match other UI elements. */
+
   color: var(--color-text-muted);
+  /* The text starts subtle, because it's a secondary UI element
+     until hovered. */
+
   font-size: 0.75rem;
+  /* Small but readable; keeps the button polite and unobtrusive. */
+
   cursor: pointer;
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  /* Makes it clear it’s clickable. */
+
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast);
+  /* Smooth hover transitions so the button feels responsive and modern. */
 }
 
 .copy-button:hover {
   background-color: var(--color-primary);
+  /* Highlight the button so the user knows it's interactive. */
+
   border-color: var(--color-primary);
+  /* Make the border match the accent color for visual consistency. */
+
   color: white;
+  /* High contrast text on hover improves readability and clarity. */
 }
 
 /* ───────────────────────────
    Code Formatting
+   Styles applied to <pre> and <code> inside .codeblock.
+   Ensures readable, scrollable, monospaced code with proper spacing.
    ─────────────────────────── */
 .codeblock pre {
   padding: var(--spacing-md);
+  /* Base internal padding around code for comfortable reading. */
+
   padding-top: calc(var(--spacing-md) + 28px);
+  /* Extra top padding to create vertical space above the code text so
+     it doesn’t sit underneath or too close to the copy button.
+     The 28px compensates for the copy button height. */
+
   overflow-x: auto;
+  /* Enables horizontal scrolling for long code lines so layout never breaks. */
+
   margin: 0;
+  /* Removes default <pre> margins so the container controls all spacing. */
 }
 
 .codeblock code {
   font-family: var(--font-mono);
+  /* Ensures consistent monospaced type across browsers. */
+
   font-size: 0.875rem;
+  /* Slightly smaller than body text for compact code readability. */
+
   line-height: 1.6;
+  /* Adds vertical breathing room, preventing dense code blocks. */
+
   color: var(--color-text);
+  /* Uses the theme’s main text color so syntax highlighting (if added)
+     layers nicely on top. */
+
   white-space: pre;
+  /* Preserves whitespace exactly as typed (spaces, tabs, line breaks).
+     Essential for code formatting. */
 }

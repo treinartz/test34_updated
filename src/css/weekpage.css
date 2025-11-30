@@ -1,159 +1,285 @@
 /* ───────────────────────────
    Header
+   Contains the back link, main title, and topic tag for the week.
    ─────────────────────────── */
 .week-header {
   margin-bottom: var(--spacing-xl);
+  /* Adds space beneath the header to visually separate it
+     from the content sections that follow. */
 }
 
 .back-link {
   display: inline-block;
+  /* Allows margin and padding to behave predictably
+     (inline elements normally ignore vertical spacing). */
+
   color: var(--color-text-muted);
+  /* Soft gray so it does not overpower the page title. */
+
   font-size: 0.875rem;
+  /* Slightly smaller than body text—indicates secondary importance. */
+
   margin-bottom: var(--spacing-md);
+  /* Creates breathing room before the main <h1> title. */
+
   transition: color var(--transition-fast);
+  /* Smooth hover color shift. */
 }
 
 .back-link:hover {
   color: var(--color-primary);
+  /* On hover, the link pops with your highlight color. */
 }
 
 .week-header h1 {
   margin-bottom: var(--spacing-sm);
+  /* Adds small space before the topics line. */
 }
 
 .week-header .topics {
   color: var(--color-primary);
+  /* Highlights the weekly topics using accent color. */
+
   font-size: 1.1rem;
+  /* Slightly larger than standard paragraph text so it stands out. */
 }
 
 /* ───────────────────────────
    Page Layout
+   Two-column layout:
+   - Left: lesson text (objectives, content, learnings)
+   - Right: sticky preview panel (image + link)
    ─────────────────────────── */
 .week-content {
   display: grid;
+  /* Creates a 2-column responsive grid. */
+
   grid-template-columns: 1fr 1fr;
+  /* Equal-width columns. Left = text, right = visual. */
+
   gap: var(--spacing-xl);
+  /* Horizontal spacing between the two columns. */
+
   margin-bottom: var(--spacing-xl);
+  /* Adds footer spacing before the Week Navigator. */
 }
 
 .week-visual {
   position: sticky;
+  /* Keeps the preview pinned as the user scrolls through the text. */
+
   top: calc(80px + var(--spacing-lg));
+  /* Ensures the sticky box sits below the navbar.
+     80px approximates navbar height + extra spacing. */
+
   align-self: start;
+  /* Ensures the sticky element aligns to the top
+     of its column instead of stretching. */
 }
 
-/* Sketch preview */
+/* ───────────────────────────
+   Sketch preview
+   Displays the preview image and link to open the actual sketch page.
+   ─────────────────────────── */
 .sketch-preview {
   background-color: var(--color-bg-light);
+  /* Card-like surface behind the preview image. */
+
   border-radius: var(--radius-lg);
+  /* Matches the rounded-corner design language. */
+
   overflow: hidden;
+  /* Ensures image corners follow the card rounding. */
+
   border: 1px solid var(--color-border);
+  /* Subtle outline to separate it from the page background. */
+
   margin-bottom: var(--spacing-md);
+  /* Space between the preview and the "View Sketch" button. */
 }
 
 .sketch-preview img {
   width: 100%;
+  /* Makes the image fill the card width. */
+
   aspect-ratio: 1;
+  /* Square thumbnail for consistency across sketches. */
+
   object-fit: cover;
+  /* Ensures the image fills the square without distortion. */
 }
 
 .sketch-link {
   display: inline-flex;
+  /* Allows padding + alignment while keeping
+     the element inline with surrounding text. */
+
   padding: var(--spacing-sm) var(--spacing-md);
+  /* Button-like padding. */
+
   background-color: var(--color-primary);
+  /* Main call-to-action color. */
+
   color: white;
+  /* High contrast against the primary background. */
+
   border-radius: var(--radius-md);
+  /* Matches site design system. */
+
   font-weight: 500;
+  /* Slightly emphasized button text. */
+
   transition: background-color var(--transition-fast);
+  /* Smooth darkening on hover. */
 }
 
 .sketch-link:hover {
   background-color: var(--color-primary-dark);
+  /* Hover shade visual feedback. */
 }
 
 /* ───────────────────────────
    Detail Sections
+   Content groups used for Objectives, Concepts, Code, etc.
    ─────────────────────────── */
 .detail-section {
   margin-bottom: var(--spacing-lg);
+  /* Adds space below each section. */
+
   padding-bottom: var(--spacing-lg);
+  /* Space above the dividing line. */
+
   border-bottom: 1px solid var(--color-border);
+  /* Section divider line. */
 }
 
 .detail-section:last-child {
   border-bottom: none;
+  /* Removes divider under the final section. */
 }
 
 .detail-section h2 {
   font-size: 1.25rem;
+  /* Slightly larger than body text for hierarchy. */
+
   margin-bottom: var(--spacing-md);
+  /* Separation between header and content. */
 }
 
 .detail-section p {
   color: var(--color-text-muted);
+  /* Soft, readable tone for general body content. */
 }
 
 /* Learning bullets */
 .learnings-list {
   list-style: none;
+  /* Removes default bullets—they are replaced with → icons. */
 }
 
 .learnings-list li {
   position: relative;
+  /* Needed so ::before bullet can be positioned absolutely. */
+
   padding-left: var(--spacing-lg);
+  /* Indent content to make room for custom bullet. */
+
   margin-bottom: var(--spacing-sm);
+  /* Spacing between bullet rows. */
+
   color: var(--color-text-muted);
+  /* Matches other explanatory text. */
 }
 
 .learnings-list li::before {
   content: "→";
+  /* Custom arrow bullet icon. */
+
   position: absolute;
   left: 0;
+  /* Positions arrow in the padded area. */
+
   color: var(--color-primary);
+  /* Arrow uses accent color so it stands out. */
 }
 
-/* Navigation */
+/* ───────────────────────────
+   Navigation (Previous / Next Week)
+   Appears at the bottom of the page.
+   ─────────────────────────── */
 .week-nav {
   display: flex;
+  /* Places “previous” and “next” side-by-side. */
+
   justify-content: space-between;
+  /* Spreads them to opposite ends (left & right). */
+
   padding-top: var(--spacing-lg);
+  /* Pushes the nav away from the content above. */
+
   border-top: 1px solid var(--color-border);
+  /* Divider line above the navigation. */
 }
 
 .nav-prev,
 .nav-next {
   padding: var(--spacing-sm) var(--spacing-md);
+  /* Creates click-target padding. */
+
   background-color: var(--color-bg-light);
+  /* Light background to look like a button. */
+
   border-radius: var(--radius-md);
+  /* Matches all clickable UI elements. */
+
   color: var(--color-text-muted);
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  /* Muted until hovered. */
+
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast);
+  /* Smooth interaction feedback. */
 }
 
 .nav-prev:hover,
 .nav-next:hover {
   background-color: var(--color-bg-lighter);
+  /* Light hover glow. */
+
   color: var(--color-text);
+  /* Full-color text when active. */
 }
 
-/* Not found */
+/* ───────────────────────────
+   Not found page
+   Shown when an invalid week ID is visited.
+   ─────────────────────────── */
 .not-found {
   text-align: center;
+  /* Centers error text. */
+
   padding: var(--spacing-xl);
+  /* Adds breathing room for visual clarity. */
 }
 
 .not-found h1 {
   margin-bottom: var(--spacing-md);
+  /* Separate heading from supporting text. */
 }
 
 /* ───────────────────────────
    Mobile
+   Triggered below 900px.
+   Collapses layout into a single-column flow.
    ─────────────────────────── */
 @media (max-width: 900px) {
   .week-content {
     grid-template-columns: 1fr;
+    /* Switches from two columns → one column. */
   }
 
   .week-visual {
     position: static;
+    /* Disables sticky behavior on small screens where
+       long-scrolling sticky content feels awkward. */
   }
 }

@@ -1,8 +1,8 @@
-import { HashRouter, Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar'
-import Home from './pages/Home'
-import WeekPage from './pages/WeekPage'
-import './css/app.css'
+import { HashRouter, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import WeekPage from "./pages/WeekPage";
+import "./css/app.css";
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         </main>
       </div>
     </HashRouter>
-  )
+  );
 }
 
-export default App
+export default App;

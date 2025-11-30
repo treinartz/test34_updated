@@ -1,105 +1,209 @@
 /* ───────────────────────────
    Navbar Container
+   The main top navigation bar that stays visible while scrolling.
+   Holds the brand on the left and navigation links on the right.
    ─────────────────────────── */
 .navbar {
   display: flex;
+  /* Lays out brand + navigation links horizontally. */
+
   justify-content: space-between;
+  /* Pushes brand to the left and links to the right,
+     filling the full width of the navbar. */
+
   align-items: center;
+  /* Vertically centers all navbar content for a clean appearance. */
+
   padding: var(--spacing-md) var(--spacing-lg);
+  /* Adds balanced spacing inside the navbar:
+     medium vertical padding, large horizontal padding. */
+
   background-color: var(--color-bg-light);
+  /* Gives the navbar a slightly lifted background to stand out
+     from the main page background. */
+
   border-bottom: 1px solid var(--color-border);
+  /* Creates a subtle dividing line beneath the navbar. */
+
   position: sticky;
+  /* Keeps the navbar fixed at the top when scrolling,
+     but still respects layout flow above it. */
+
   top: 0;
+  /* Defines where the sticky behavior attaches. */
+
   z-index: 100;
+  /* Ensures the navbar stays above content like hero images or cards. */
 }
 
-/* Brand */
+/* ───────────────────────────
+   Brand
+   Typically your name or site title in the top left.
+   ─────────────────────────── */
 .navbar-brand a {
   font-size: 1.25rem;
+  /* Slightly larger font gives the brand visual weight. */
+
   font-weight: 700;
+  /* Makes the brand bold and lead the visual hierarchy. */
+
   color: var(--color-text);
+  /* Uses primary text color for maximum legibility. */
+
   transition: color var(--transition-fast);
+  /* Smooth color fade on hover for a polished feel. */
 }
 
 .navbar-brand a:hover {
   color: var(--color-primary);
+  /* Highlight the brand interactively when hovered. */
 }
 
-/* Main links */
+/* ───────────────────────────
+   Main links
+   These are the primary navigation options next to the brand.
+   ─────────────────────────── */
 .navbar-links {
   display: flex;
+  /* Horizontally arranges the navigation links. */
+
   align-items: center;
+  /* Vertical alignment to keep links centered. */
+
   gap: var(--spacing-lg);
+  /* Even spacing between each navigation link. */
 }
 
 .navbar-links > a {
   color: var(--color-text-muted);
+  /* Default link tone is softer so hover and active states stand out more. */
+
   font-weight: 500;
+  /* Medium weight for readability without overpowering the brand. */
+
   padding: var(--spacing-xs) var(--spacing-sm);
+  /* Clickable padding area, making links easier to tap and more accessible. */
+
   border-radius: var(--radius-sm);
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  /* Slight rounding makes hover states and backgrounds look cleaner. */
+
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast);
+  /* Smooth transitions to make hover & active states feel responsive. */
 }
 
 .navbar-links > a:hover,
 .navbar-links > a.active {
   color: var(--color-text);
+  /* Darker text color signals an “active” or “hovered” state. */
+
   background-color: var(--color-bg-lighter);
+  /* Subtle background highlight for improved clarity of selection. */
 }
 
-/* Week navigation index */
+/* ───────────────────────────
+   Week Navigation Index
+   A compact grid of numbered links (e.g., Week 1–12).
+   Provides fast access to different lessons.
+   ─────────────────────────── */
 .navbar-weeks {
   display: flex;
+  /* Displays week numbers in a row. */
+
   align-items: center;
+  /* Vertically aligns circles/squares of week numbers. */
+
   gap: var(--spacing-xs);
+  /* Tight spacing between week numbers for compact visual grouping. */
 }
 
 .weeks-label {
   color: var(--color-text-muted);
+  /* Soft text to keep the "Weeks:" label subtle. */
+
   font-size: 0.875rem;
+  /* Slightly smaller than body text—just informational. */
+
   margin-right: var(--spacing-xs);
+  /* Adds a bit of space before the numbered links begin. */
 }
 
 .navbar-weeks a {
   width: 28px;
   height: 28px;
+  /* Fixed size for each week item—creates a uniform clickable grid. */
+
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Centers the number perfectly inside the square/circle area. */
+
   border-radius: var(--radius-sm);
+  /* Slight rounding keeps the week index clean and modern. */
+
   font-size: 0.875rem;
+  /* Matches the compact label style. */
+
   font-weight: 500;
+  /* Makes each number bold enough to read easily at small size. */
+
   color: var(--color-text-muted);
+  /* Default muted color until hovered or activated. */
+
   background-color: var(--color-bg);
-  transition: background-color var(--transition-fast), color var(--transition-fast);
+  /* Neutral background for inactive week buttons. */
+
+  transition: background-color var(--transition-fast),
+              color var(--transition-fast);
+  /* Smooth interactive color transitions. */
 }
 
 .navbar-weeks a:hover {
   background-color: var(--color-bg-lighter);
+  /* Light glow effect when hovering the week number. */
+
   color: var(--color-text);
+  /* Makes the number pop during hover. */
 }
 
 .navbar-weeks a.active {
   background-color: var(--color-primary);
+  /* Active week is fully highlighted. */
+
   color: white;
+  /* Ensures full contrast and visibility. */
 }
 
 /* ───────────────────────────
-   Mobile
+   MOBILE STYLES
+   Triggered below 768px.
+   Transforms the navbar into a stacked, mobile-friendly layout.
    ─────────────────────────── */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
+    /* Stacks brand, links, and week index vertically. */
+
     gap: var(--spacing-md);
+    /* Adds breathing room between the vertical groups. */
+
     padding: var(--spacing-md);
+    /* Simplifies padding for compact mobile layout. */
   }
 
   .navbar-links {
     flex-direction: column;
+    /* Converts main links into a vertical list for better mobile usability. */
+
     gap: var(--spacing-md);
+    /* Increases space between links for finger tapping. */
   }
 
   .navbar-weeks {
     flex-wrap: wrap;
+    /* Allows week numbers to wrap into multiple rows instead of overflowing. */
+
     justify-content: center;
+    /* Centers the grid of week buttons on mobile. */
   }
 }
